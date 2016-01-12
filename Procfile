@@ -1,1 +1,1 @@
-web: gunicorn yangbeombot.py --log-file -
+web: gunicorn herokubot.py --log-file -
