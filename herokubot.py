@@ -33,6 +33,7 @@ def hello():
 def token():
     if request.method == "POST":
         print(request.content_type)
+        print("content_type")
         print(request.get_json())
         getjson = json.loads(request.get_json())['result'][0]
         print(getjson)
