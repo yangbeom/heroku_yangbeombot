@@ -47,7 +47,7 @@ def token():
             print(REresult.group("command"))
             if REresult.group("command") == "poster":
                 print(REresult.group('q'))
-                naver_movie(REresult.group('q',getjson))
+                naver_movie(REresult.group('q'),getjson)
             else:
                 return "notthing your command"
         except:
