@@ -43,3 +43,6 @@ def token():
             return "notthing your command"
 
     return "Success"
+
+if __name__=="__main__":
+    app.run()
