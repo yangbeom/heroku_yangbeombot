@@ -35,6 +35,7 @@ def token():
         print(request.content_type)
         print("content_type")
         print(request.get_json())
+        print("request.get_json()")
         getjson = json.loads(request.get_json())['result'][0]
         print(getjson)
         print("before re")
