@@ -40,6 +40,7 @@ def token():
         print(REresult.group("command"))
         if REresult.group("command") == "poster":
             print("in")
+            print(REresult.group('q'))
             naver_movie(REresult.group('q'))
         else:
             return "notthing your command"
