@@ -6,8 +6,8 @@ import os
 
 app = Flask(__name__)
 rpattern = r'^\/(?P<command>.*) (?P<q>.*)'
-howtouse = """사용법 \n
-              /poster 영화제목"""
+howtouse = """사용법
+/poster 영화제목"""
 
 def naver_movie(q,data):
     url = "http://auto.movie.naver.com/ac"
