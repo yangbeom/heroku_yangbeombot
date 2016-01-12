@@ -20,7 +20,7 @@ def naver_movie(q,data):
     with open("out.jpg","wb+") as f:
         f.write(r.content)
         f.seek(0)
-        INFO = {"chat_id": data['message']['id']}
+        INFO = {"chat_id": data['message']['from']['id']}
         files= {"photo" : f}
         r = requests.post("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendPhoto",files=files,data=INFO,stream=True)
 
@@ -44,7 +44,7 @@ def token():
         if REresult.group("command") == "poster":
             if REresult.group('q'):
                 print(REresult.group('q'))
-                INFO = {"chat_id": getjson['message']['id'],"text":"사용법 \n /poster 영화제목"}
+                INFO = {"chat_id": getjson['message']['from']['id'],"text":"사용법 \n /poster 영화제목"}
                 requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage",params=INFO)
             naver_movie(REresult.group('q',getjson))
         else:
