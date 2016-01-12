@@ -32,6 +32,7 @@ def hello():
 @app.route('/'+os.environ['TELEGRAM_TOKEN']+'/',methods=["POST","GET"])
 def token():
     if request.method == "POST":
+        return "noting"
         print(request.content_type)
         print(request.get_json())
         getjson = json.loads(request.get_json())['result'][0]
