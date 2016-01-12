@@ -6,6 +6,8 @@ import os
 
 app = Flask(__name__)
 rpattern = r'^\/(?P<command>.*) (?P<q>.*)'
+howtouse = """사용법 \n
+              /poster 영화제목"""
 
 def naver_movie(q,data):
     url = "http://auto.movie.naver.com/ac"
@@ -47,7 +49,7 @@ def token():
             else:
                 return "notthing your command"
         except:
-            INFO = {"chat_id": getjson['message']['from']['id'],"text":"사용법 \n /poster 영화제목"}
+            INFO = {"chat_id": getjson['message']['from']['id'],"text":howtouse}
             requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage",params=INFO)
 
     return "Success"
