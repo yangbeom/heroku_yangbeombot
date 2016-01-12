@@ -1,1 +1,1 @@
-web: gunicorn herokubot.py --log-file -
+web: gunicorn herokubot.py:app --log-file -
