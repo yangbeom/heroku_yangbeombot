@@ -39,6 +39,7 @@ def token():
         REresult = re.search(rpattern,getjson['message']['text'])
         print(REresult.group("command"))
         if REresult.group("command") == "poster":
+            print("in")
             naver_movie(REresult.group('q'))
         else:
             return "notthing your command"
