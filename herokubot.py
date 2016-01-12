@@ -39,16 +39,15 @@ def token():
         getjson = request.get_json()
         print(getjson)
         print("before re")
-        REresult = re.search(rpattern,getjson['message']['text'])
-        print(REresult.group("command"))
-        if REresult.group("command") == "poster":
-            if REresult.group('q'):
-                print(REresult.group('q'))
-                INFO = {"chat_id": getjson['message']['from']['id'],"text":"사용법 \n /poster 영화제목"}
-                requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage",params=INFO)
-            else:
+        try:
+            REresult = re.search(rpattern,getjson['message']['text'])
+            print(REresult.group("command"))
+            if REresult.group("command") == "poster":
                 naver_movie(REresult.group('q',getjson))
-        else:
-            return "notthing your command"
+            else:
+                return "notthing your command"
+        except:
+            INFO = {"chat_id": getjson['message']['from']['id'],"text":"사용법 \n /poster 영화제목"}
+            requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage",params=INFO)
 
     return "Success"
