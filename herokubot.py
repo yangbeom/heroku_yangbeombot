@@ -22,7 +22,7 @@ def naver_movie(q):
         f.seek(0)
         INFO = {"chat_id": "148229544"}
         files= {"photo" : f}
-        r = requests.post("https://api.telegram.org/"+os.environ['TELEGRAM_TOKEN']+"/sendPhoto",files=files,data=INFO,stream=True)
+        r = requests.post("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendPhoto",files=files,data=INFO,stream=True)
 
 
 @app.route('/')
