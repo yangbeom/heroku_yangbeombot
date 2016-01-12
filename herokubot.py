@@ -46,7 +46,8 @@ def token():
                 print(REresult.group('q'))
                 INFO = {"chat_id": getjson['message']['from']['id'],"text":"사용법 \n /poster 영화제목"}
                 requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage",params=INFO)
-            naver_movie(REresult.group('q',getjson))
+            else:
+                naver_movie(REresult.group('q',getjson))
         else:
             return "notthing your command"
 
