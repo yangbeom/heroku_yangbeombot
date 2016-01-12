@@ -36,7 +36,7 @@ def token():
         print("content_type")
         print(request.get_json())
         print("request.get_json()")
-        getjson = json.loads(request.get_json())['result'][0]
+        getjson = json.loads(request.get_json())
         print(getjson)
         print("before re")
         REresult = re.search(rpattern,getjson['message']['text'])
