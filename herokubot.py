@@ -5,7 +5,7 @@ import re
 import os
 
 app = Flask(__name__)
-rcommand = r'^\/'
+rcommand = r'^\/(?P<command>.*)'
 rpattern = r'^\/(?P<command>.*) (?P<q>.*)'
 
 def how_to_use(jsondata):
@@ -45,14 +45,15 @@ def token():
         getjson = request.get_json()
         print(getjson)
         try:
-            if re.search(rcommand, getjson['message']['text']):
-                reresult = re.search(rpattern, getjson['message']['text'])
+            reresult = re.search(rcommand, getjson['message']['text'])
+            if reresult:
                 if reresult.group("command") == "poster":
+                    reresult = re.search(rpattern, getjson['message']['text'])
                     naver_movie(reresult.group('q'), getjson)
                 elif reresult.group("command") == "start":
                     how_to_use(getjson)
-                else:
-                    return "notthing your command"
+            else:
+                return "notthing your command"
         except:
             how_to_use(getjson)
 
