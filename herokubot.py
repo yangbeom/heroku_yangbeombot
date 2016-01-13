@@ -12,7 +12,7 @@ def how_to_use(jsondata):
     howtouse = """사용법
 /poster 영화제목
 영화 포스터를 전송합니다."""
-    info = {"chat_id": json['message']['from']['id'], "text": howtouse}
+    info = {"chat_id": jsondata['message']['from']['id'], "text": howtouse}
     requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
 
 
@@ -43,12 +43,10 @@ def hello():
 def token():
     if request.method == "POST":
         getjson = request.get_json()
-        print(getjson)
         try:
             reresult = re.search(rcommand, getjson['message']['text'])
             print(reresult)
             if reresult:
-                print("reresult in ")
                 if reresult.group("command") == "poster":
                     reresult = re.search(rpattern, getjson['message']['text'])
                     naver_movie(reresult.group('q'), getjson)
