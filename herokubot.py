@@ -15,6 +15,7 @@ def how_to_use(jsondata):
     info = {"chat_id": json['message']['from']['id'], "text": howtouse}
     requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
 
+
 def naver_movie(q, jsondata):
     url = "http://auto.movie.naver.com/ac"
     params = {"q_enc": "UTF-8", "st": "1", "r_lt": "1", "n_ext": "1", "t_koreng": "1", "r_format": "json",
@@ -42,6 +43,7 @@ def hello():
 def token():
     if request.method == "POST":
         getjson = request.get_json()
+        print(getjson)
         try:
             if re.search(rcommand, getjson['message']['text']):
                 reresult = re.search(rpattern, getjson['message']['text'])
