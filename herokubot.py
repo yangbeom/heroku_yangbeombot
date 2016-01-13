@@ -53,8 +53,9 @@ def token():
                 elif reresult.group("command") == "start":
                     how_to_use(getjson)
             else:
+                how_to_use(getjson)
                 return "notthing your command"
         except:
-            how_to_use(getjson)
+            return "what r u doing?"
 
     return "Success"
