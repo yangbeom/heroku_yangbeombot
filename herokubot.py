@@ -50,6 +50,8 @@ def token():
             if reresult:
                 if reresult.group("command") == "poster":
                     reresult = re.search(rpattern, getjson['message']['text'])
+                    print(getjson)
+                    print(reresult.group('q'))
                     naver_movie(reresult.group('q'), getjson)
                 elif reresult.group("command") == "start":
                     how_to_use(getjson)
