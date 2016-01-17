@@ -5,7 +5,7 @@ import re
 import os
 
 app = Flask(__name__)
-rcommand = r'^\/(?P<command>.*)'
+rcommand = r'^\/(?P<command>.*) '
 rpattern = r'^\/(?P<command>.*) (?P<q>.*)'
 
 def how_to_use(jsondata):
