@@ -25,6 +25,7 @@ def naver_movie(q, jsondata):
     contents = json.loads(r.content.decode("utf-8"))
     mv_poster_url = contents['items'][0][0][3][0]
     r = requests.get(mv_poster_url)
+    print(mv_poster_url)
     with open("out.jpg", "wb+") as f:
         f.write(r.content)
         f.seek(0)
