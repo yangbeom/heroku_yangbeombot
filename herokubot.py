@@ -48,6 +48,7 @@ def token():
             reresult = re.search(rcommand, getjson['message']['text'])
             print(reresult)
             if reresult:
+                print(reresult.group("command"))
                 if reresult.group("command") == "poster":
                     reresult = re.search(rpattern, getjson['message']['text'])
                     print(getjson)
