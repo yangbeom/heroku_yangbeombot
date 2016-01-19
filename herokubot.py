@@ -31,7 +31,7 @@ def openweather(jsondata):
         info = {"chat_id": jsondata['message']['from']['id']}
         files = {"photo": f}
         requests.post("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendPhoto", files=files,
-                      data=info, stream=True)
+                      data=info)
     info = {"chat_id": jsondata['message']['from']['id'], "text": weatherinfo}
     requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
 
