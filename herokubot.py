@@ -5,13 +5,15 @@ import re
 import os
 
 app = Flask(__name__)
-rcommand = r'^\/(?P<command>.*) '
-rpattern = r'^\/(?P<command>.*) (?P<q>.*)'
+rcommand = r'^\/(?P<command>\w*)'
+rpattern = r'^\/(?P<command>\w*) (?P<q>.*)'
 
 def how_to_use(jsondata):
     howtouse = """사용법
 /poster 영화제목
-영화 포스터를 전송합니다."""
+영화 포스터를 전송합니다.
+/weather
+서울의 현재온도를 알려줍니다."""
     info = {"chat_id": jsondata['message']['from']['id'], "text": howtouse}
     requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
 
@@ -73,7 +75,7 @@ def token():
                     naver_movie(reresult.group('q'), getjson)
                 elif reresult.group("command") == "weather":
                     openweather(getjson)
-                elif reresult.group("command") == "start":
+                else :
                     how_to_use(getjson)
             else:
                 how_to_use(getjson)
