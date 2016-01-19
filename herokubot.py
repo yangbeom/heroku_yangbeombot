@@ -8,6 +8,7 @@ app = Flask(__name__)
 rcommand = r'^\/(?P<command>\w*)'
 rpattern = r'^\/(?P<command>\w*) (?P<q>.*)'
 
+
 def how_to_use(jsondata):
     howtouse = """사용법
 /poster 영화제목
@@ -21,19 +22,13 @@ def how_to_use(jsondata):
 def openweather(jsondata):
     r = requests.get("http://api.openweathermap.org/data/2.5/weather?id=1835848&units=metric&APPID="+os.environ['OPENWEATHERMAP_KEY'])
     weatherdata = json.loads(r.content.decode("utf-8"))
-    print(weatherdata.keys())
-    weatherinfo = "지역 : {} \n온도 : {}\n습도 : {}\n날씨 : {}".format(weatherdata['name'], weatherdata['main']['temp'], weatherdata['main']['humidity'], weatherdata['weather'][0]['main'])
-
-    r = requests.get("http://openweathermap.org/img/w/"+weatherdata['weather'][0]['icon']+".png")
-    with open("out.jpg", "wb+") as f:
-        f.write(r.content)
-        f.seek(0)
-        info = {"chat_id": jsondata['message']['from']['id']}
-        files = {"photo": f}
-        requests.post("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendPhoto", files=files,
-                      data=info)
+    weatherinfo = "지역 : {} \n온도 : {}˚C\n습도 : {}%\n날씨 : {}".format(weatherdata['name'],
+                                                                          weatherdata['main']['temp'],
+                                                                          weatherdata['main']['humidity'],
+                                                                          weatherdata['weather'][0]['main'])
     info = {"chat_id": jsondata['message']['from']['id'], "text": weatherinfo}
     requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
+
 
 def naver_movie(q, jsondata):
     url = "http://auto.movie.naver.com/ac"
@@ -75,7 +70,7 @@ def token():
                     naver_movie(reresult.group('q'), getjson)
                 elif reresult.group("command") == "weather":
                     openweather(getjson)
-                else :
+                else:
                     how_to_use(getjson)
             else:
                 how_to_use(getjson)
