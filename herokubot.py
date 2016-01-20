@@ -73,7 +73,7 @@ def token():
                     naver_movie(reresult.group('q'), getjson)
                 elif reresult.group("command") == "weather":
                     openweather(getjson)
-                elif reresult.group("commandn") == "transmission":
+                elif reresult.group("command") == "transmission":
                     transmission(getjson)
                 else:
                     how_to_use(getjson)
