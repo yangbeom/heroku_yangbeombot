@@ -50,6 +50,7 @@ def naver_movie(q, jsondata):
 
 
 def transmission(jsondata):
+    print(jsondata)
     info = {"chat_id": jsondata['message']['from']['id'], "text": jsondata['message']['text'].replace('/transmission','') }
     requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
 
@@ -69,8 +70,6 @@ def token():
                 print(reresult.group("command"))
                 if reresult.group("command") == "poster":
                     reresult = re.search(rpattern, getjson['message']['text'])
-                    print(getjson)
-                    print(reresult.group('q'))
                     naver_movie(reresult.group('q'), getjson)
                 elif reresult.group("command") == "weather":
                     openweather(getjson)
