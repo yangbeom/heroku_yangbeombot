@@ -63,6 +63,7 @@ def hello():
 def token():
     if request.method == "POST":
         getjson = request.get_json()
+        print(request.contents_type)
         try:
             reresult = re.search(rcommand, getjson['message']['text'])
             print(reresult)
