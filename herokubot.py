@@ -64,6 +64,7 @@ def token():
     if request.method == "POST":
         getjson = request.get_json()
         print(getjson)
+        print(getjson['message']['text'])
         try:
             reresult = re.search(rcommand, getjson['message']['text'])
             print(reresult.group("command"))
