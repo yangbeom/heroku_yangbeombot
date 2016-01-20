@@ -49,6 +49,10 @@ def naver_movie(q, jsondata):
                       data=info, stream=True)
 
 
+def transmission(jsondata):
+    info = {"chat_id": jsondata['message']['from']['id'], "text": jsondata['message']['text'].replace('/transmission','') }
+    requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
+
 @app.route('/')
 def hello():
     return "hello"
@@ -70,6 +74,8 @@ def token():
                     naver_movie(reresult.group('q'), getjson)
                 elif reresult.group("command") == "weather":
                     openweather(getjson)
+                elif reresult.group("transmission"):
+                    transmission(getjson)
                 else:
                     how_to_use(getjson)
             else:
