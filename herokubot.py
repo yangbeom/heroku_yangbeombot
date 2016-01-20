@@ -66,7 +66,7 @@ def token():
         print(getjson)
         try:
             reresult = re.search(rcommand, getjson['message']['text'])
-            print(reresult)
+            print(reresult.group("command"))
             if reresult:
                 print(reresult.group("command"))
                 if reresult.group("command") == "poster":
