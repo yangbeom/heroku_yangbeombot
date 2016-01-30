@@ -8,8 +8,8 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from os import environ
 
 
-tc=transmissionrpc.Client(address=environ["TRANSMISSON_URL"],port=environ["TRANSMISSON_PORT"],
-                          user=environ["TRANSMISSON_ID"],password=environ["TRANSMISSON_PW"])
+tc=transmissionrpc.Client(address=environ["TRANSMISSION_URL"],port=environ["TRANSMISSION_PORT"],
+                          user=environ["TRANSMISSION_ID"],password=environ["TRANSMISSION_PW"])
 
 telegram_body = {'message': {'date': 1453276318,
                              'message_id': 162,
