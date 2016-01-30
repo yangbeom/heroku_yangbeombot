@@ -1,2 +1,2 @@
 web: gunicorn herokubot:app --log-file -
-clock: python tosarang.py
+worker: python tosarang.py
