@@ -54,10 +54,6 @@ def transmission(jsondata):
     info = {"chat_id": jsondata['message']['from']['id'], "text": jsondata['message']['text'].replace('/transmission','') }
     requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
 
-@app.route('/')
-def hello():
-    return "hello"
-
 
 @app.route('/'+os.environ['TELEGRAM_TOKEN']+'/', methods=["POST", "GET"])
 def token():
