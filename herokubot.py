@@ -3,7 +3,6 @@ import json
 import requests
 import re
 import os
-from flask_apscheduler import APScheduler
 
 app = Flask(__name__)
 rcommand = r'^\/(?P<command>\w*)'
