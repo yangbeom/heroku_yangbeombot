@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<torrent>
+<mon>
+</mon>
+
+<tue>
+    <torrent>
+        <subject>집밥 백선생</subject>
+        <dir>/mnt/sda1/downloads/예능/집밥 백선생</dir>
+        <genre>ent</genre>
+    </torrent>
+
+    <torrent>
+        <subject>육룡이 나르샤</subject>
+        <dir>/mnt/sda1/downloads/드라마/육룡이 나르샤</dir>
+        <genre>drama</genre>
+    </torrent>
+
+    <torrent>
+        <subject>화려한 유혹</subject>
+        <dir>/mnt/sda1/downloads/드라마/화려한 유혹</dir>
+        <genre>drama</genre>
+    </torrent>
+
+    <torrent>
+        <subject>치즈인더트랩</subject>
+        <dir>/mnt/sda1/downloads/드라마/치즈인더트랩</dir>
+        <genre>drama</genre>
+    </torrent>
+</tue>
+
+<wed>
+    <torrent>
+        <subject>육룡이 나르샤</subject>
+        <dir>/mnt/sda1/downloads/드라마/육룡이 나르샤</dir>
+        <genre>drama</genre>
+    </torrent>
+
+    <torrent>
+        <subject>화려한 유혹</subject>
+        <dir>/mnt/sda1/downloads/드라마/화려한 유혹</dir>
+        <genre>drama</genre>
+    </torrent>
+
+    <torrent>
+        <subject>치즈인더트랩</subject>
+        <dir>/mnt/sda1/downloads/드라마/치즈인더트랩</dir>
+        <genre>drama</genre>
+    </torrent>
+</wed>
+
+<thu>
+</thu>
+
+<fri>
+    <torrent>
+        <subject>내 방의 품격</subject>
+        <dir>/mnt/sda1/downloads/예능/test</dir>
+        <genre>ent</genre>
+    </torrent>
+</fri>
+
+<sat>
+    <torrent>
+        <subject>우리결혼했어요</subject>
+        <dir>/mnt/sda1/downloads/예능/우리결혼했어요</dir>
+        <genre>ent</genre>
+    </torrent>
+
+    <torrent>
+        <subject>무한도전</subject>
+        <dir>/mnt/sda1/downloads/예능/무한도전</dir>
+        <genre>ent</genre>
+    </torrent>
+</sat>
+
+<sun>
+    <torrent>
+        <subject>히든 싱어 시즌4</subject>
+        <dir>/mnt/sda1/downloads/예능/히든 싱어 시즌4</dir>
+        <genre>ent</genre>
+   </torrent>
+
+    <torrent>
+        <subject>복면가왕</subject>
+        <dir>/mnt/sda1/downloads/예능/복면가왕</dir>
+        <genre>ent</genre>
+   </torrent>
+
+    <torrent>
+        <subject>런닝맨</subject>
+        <dir>/mnt/sda1/downloads/예능/런닝맨</dir>
+        <genre>ent</genre>
+    </torrent>
+</sun>
+</torrent>
