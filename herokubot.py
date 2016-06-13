@@ -27,7 +27,7 @@ def openweather(jsondata):
                                                                           weatherdata['main']['temp'],
                                                                           weatherdata['main']['humidity'],
                                                                           weatherdata['weather'][0]['main'])
-    info = {"chat_id": jsondata['message']['from']['id'], "text": weatherinfo}
+    info = {"chat_id": jsondata['message']['chat']['id'], "text": weatherinfo}
     requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
 
 
@@ -44,7 +44,7 @@ def naver_movie(q, jsondata):
     with open("out.jpg", "wb+") as f:
         f.write(r.content)
         f.seek(0)
-        info = {"chat_id": jsondata['message']['from']['id']}
+        info = {"chat_id": jsondata['message']['chat']['id']}
         files = {"photo": f}
         requests.post("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendPhoto", files=files,
                       data=info, stream=True)
@@ -52,7 +52,7 @@ def naver_movie(q, jsondata):
 
 def transmission(jsondata):
     print(jsondata)
-    info = {"chat_id": jsondata['message']['from']['id'], "text": jsondata['message']['text'].replace('/transmission','') }
+    info = {"chat_id": jsondata['message']['chat']['id'], "text": jsondata['message']['text'].replace('/transmission','') }
     requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
 
 
