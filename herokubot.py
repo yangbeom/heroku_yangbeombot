@@ -20,7 +20,8 @@ def how_to_use(jsondata):
 
 
 def openweather(jsondata):
-    r = requests.get("http://api.openweathermap.org/data/2.5/weather?id=1835848&units=metric&APPID="+os.environ['OPENWEATHERMAP_KEY'])
+    r = requests.get("http://api.openweathermap.org/data/2.5/weather?id=1835848&units=metric&APPID="
+                     +os.environ['OPENWEATHERMAP_KEY'])
     weatherdata = json.loads(r.content.decode("utf-8"))
     weatherinfo = "지역 : {} \n온도 : {}˚C\n습도 : {}%\n날씨 : {}".format(weatherdata['name'],
                                                                           weatherdata['main']['temp'],
@@ -81,3 +82,7 @@ def token():
             return "what r u doing?"
 
     return "Success"
+
+@app.route('/')
+def hello():
+    return "hello =)"
