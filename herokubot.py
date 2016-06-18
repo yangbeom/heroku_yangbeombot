@@ -52,7 +52,7 @@ def naver_movie(q, jsondata):
 
 def transmission(jsondata):
     print(jsondata)
-    info = {"chat_id": jsondata['message']['chat']['id'], "text": jsondata['message']['text'].replace('/transmission',''), "parse_mode":"markdown" }
+    info = {"chat_id": jsondata['message']['chat']['id'], "text": jsondata['message']['text'].replace('/transmission',''), "parse_mode":"Markdown" }
     requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
 
 
