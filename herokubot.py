@@ -57,10 +57,13 @@ def transmission(jsondata):
 
 def testlocation(jsondata):
     print('def test send location')
+    print(jsondata)
     reply_keyboard = {"keyboard":{"text" : "send location", "request_location":True}}
     info = {"chat_id": jsondata['message']['chat']['id'],
             "text": "test location", "reply_markup":reply_keyboard}
-    requests.get("https://api.telegram.org/bot" + os.environ['TELEGRAM_TOKEN'] + "/sendMessage", params=info)
+    r = requests.post("https://api.telegram.org/bot" + os.environ['TELEGRAM_TOKEN'] + "/sendMessage", json=info)
+    print(r.text)
+
 
 
 @app.route('/'+os.environ['TELEGRAM_TOKEN']+'/', methods=["POST", "GET"])
