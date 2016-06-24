@@ -62,7 +62,7 @@ def testlocation(jsondata):
     reply_keyboard = {"keyboard":[["text"],['hello']]}
     info = {"chat_id": jsondata['message']['chat']['id'],
             "text": "test location", "reply_markup":[["text"],['hello']]}
-    r = requests.post("https://api.telegram.org/bot" + os.environ['TELEGRAM_TOKEN'] + "/sendMessage", data=info)
+    r = requests.post("https://api.telegram.org/bot" + os.environ['TELEGRAM_TOKEN'] + "/sendMessage", json=info)
     print(r.text)
 
 
