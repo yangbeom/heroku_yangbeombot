@@ -53,13 +53,13 @@ def naver_movie(q, jsondata):
 def transmission(jsondata):
     print(jsondata)
     info = {"chat_id": jsondata['message']['chat']['id'], "text": jsondata['message']['text'].replace('/transmission',''), "parse_mode":"Markdown" }
-    requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
+    requests.post("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", json=info)
 
 def testlocation(jsondata):
     print('def test send location')
     print(jsondata)
     location_button = {"text":"location","request_location":True}
-    reply_keyboard = {"keyboard":[location_button,['hello']],"one_time_keyboard":True}
+    reply_keyboard = {"keyboard":[[location_button],['hello']],"one_time_keyboard":True}
     info = {"chat_id": jsondata['message']['chat']['id'],
             "text": "test location", "reply_markup":reply_keyboard}
     r = requests.post("https://api.telegram.org/bot" + os.environ['TELEGRAM_TOKEN'] + "/sendMessage", json=info)
