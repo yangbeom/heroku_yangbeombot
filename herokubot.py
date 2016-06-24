@@ -55,6 +55,13 @@ def transmission(jsondata):
     info = {"chat_id": jsondata['message']['chat']['id'], "text": jsondata['message']['text'].replace('/transmission',''), "parse_mode":"Markdown" }
     requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
 
+def testlocation(jsondata):
+    print('def test send location')
+    reply_keyboard = {"keyboard":{"text" : "send location", "request_location":True}}
+    info = {"chat_id": jsondata['message']['chat']['id'],
+            "text": "test location", "reply_markup":reply_keyboard}
+    requests.get("https://api.telegram.org/bot" + os.environ['TELEGRAM_TOKEN'] + "/sendMessage", params=info)
+
 
 @app.route('/'+os.environ['TELEGRAM_TOKEN']+'/', methods=["POST", "GET"])
 def token():
@@ -73,6 +80,8 @@ def token():
                     openweather(getjson)
                 elif reresult.group("command") == "transmission":
                     transmission(getjson)
+                elif reresult.group("command") == "location":
+                    testlocation(getjson)
                 else:
                     how_to_use(getjson)
             else:
