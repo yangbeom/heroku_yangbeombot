@@ -16,7 +16,7 @@ def how_to_use(jsondata):
 /weather
 서울의 현재온도를 알려줍니다."""
     info = {"chat_id": jsondata['message']['from']['id'], "text": howtouse}
-    requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
+    requests.post("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", json=info)
 
 
 def openweather(jsondata):
@@ -28,7 +28,7 @@ def openweather(jsondata):
                                                                           weatherdata['main']['humidity'],
                                                                           weatherdata['weather'][0]['main'])
     info = {"chat_id": jsondata['message']['chat']['id'], "text": weatherinfo}
-    requests.get("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", params=info)
+    requests.post("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", json=info)
 
 
 def naver_movie(q, jsondata):
