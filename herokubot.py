@@ -16,25 +16,30 @@ def how_to_use(jsondata):
 /weather
 서울의 현재온도를 알려줍니다."""
     info = {"chat_id": jsondata['message']['from']['id'], "text": howtouse}
-    requests.post("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", json=info)
+    requests.post("https://api.telegram.org/bot" +
+                  os.environ['TELEGRAM_TOKEN'] + "/sendMessage", json=info)
 
 
 def openweather(jsondata):
-    r = requests.get("http://api.openweathermap.org/data/2.5/weather?id=1835848&units=metric&APPID="
-                     +os.environ['OPENWEATHERMAP_KEY'])
+    url = "http://api.openweathermap.org/data/2.5/" + \
+            "weather?id=1835848&units=metric&APPID="
+    r = requests.get(url+os.environ['OPENWEATHERMAP_KEY'])
     weatherdata = json.loads(r.content.decode("utf-8"))
-    weatherinfo = "지역 : {} \n온도 : {}˚C\n습도 : {}%\n날씨 : {}".format(weatherdata['name'],
-                                                                          weatherdata['main']['temp'],
-                                                                          weatherdata['main']['humidity'],
-                                                                          weatherdata['weather'][0]['main'])
+    weatherinfo = "지역 : {} \n온도 : {}˚C\n습도 : {}%\n날씨 : {}".format(
+                  weatherdata['name'], 
+                  weatherdata['main']['temp'],
+                  weatherdata['main']['humidity'], 
+                  weatherdata['weather'][0]['main'])
     info = {"chat_id": jsondata['message']['chat']['id'], "text": weatherinfo}
-    requests.post("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", json=info)
+    requests.post("https://api.telegram.org/bot" + 
+     i             os.environ['TELEGRAM_TOKEN'] + "/sendMessage", json=info)
 
 
 def naver_movie(q, jsondata):
     url = "http://auto.movie.naver.com/ac"
-    params = {"q_enc": "UTF-8", "st": "1", "r_lt": "1", "n_ext": "1", "t_koreng": "1", "r_format": "json",
-              "r_enc": "UTF-8", "r_unicode": "0", "r_escape": "1", "q": q}
+    params = {"q_enc": "UTF-8", "st": "1", "r_lt": "1", "n_ext": "1", 
+              "t_koreng": "1", "r_format": "json", "r_enc": "UTF-8", 
+              "r_unicode": "0", "r_escape": "1", "q": q}
 
     r = requests.get(url, params=params)
     contents = json.loads(r.content.decode("utf-8"))
@@ -46,23 +51,30 @@ def naver_movie(q, jsondata):
         f.seek(0)
         info = {"chat_id": jsondata['message']['chat']['id']}
         files = {"photo": f}
-        requests.post("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendPhoto", files=files,
-                      data=info, stream=True)
+        requests.post("https://api.telegram.org/bot" +  
+                       os.environ['TELEGRAM_TOKEN'] + "/sendPhoto", 
+                       files=files, data=info, stream=True)
 
 
 def transmission(jsondata):
     print(jsondata)
-    info = {"chat_id": jsondata['message']['chat']['id'], "text": jsondata['message']['text'].replace('/transmission',''), "parse_mode":"Markdown" }
-    requests.post("https://api.telegram.org/bot"+os.environ['TELEGRAM_TOKEN']+"/sendMessage", json=info)
+    info = {"chat_id": jsondata['message']['chat']['id'], 
+            "text": jsondata['message']['text'].replace('/transmission',''), 
+            "parse_mode": "Markdown" }
+    requests.post("https://api.telegram.org/bot"+ 
+                   os.environ['TELEGRAM_TOKEN']+"/sendMessage", json=info)
 
 def testlocation(jsondata):
     print('def test send location')
     print(jsondata)
-    location_button = {"text":"location","request_location":True}
-    reply_keyboard = {"keyboard":[[location_button],['hello']],"one_time_keyboard":True}
+    location_button = {"text": "location", "request_location": True}
+    reply_keyboard = {"keyboard": [[location_button], ['hello']],
+                      "one_time_keyboard": True}
     info = {"chat_id": jsondata['message']['chat']['id'],
-            "text": "test location", "reply_markup":reply_keyboard}
-    r = requests.post("https://api.telegram.org/bot" + os.environ['TELEGRAM_TOKEN'] + "/sendMessage", json=info)
+            "text": "test location", "reply_markup": reply_keyboard}
+    r = requests.post("https://api.telegram.org/bot" + 
+                       os.environ['TELEGRAM_TOKEN'] + "/sendMessage", 
+                       json=info)
     print(r.text)
 
 
