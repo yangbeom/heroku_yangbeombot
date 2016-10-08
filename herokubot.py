@@ -32,7 +32,7 @@ def openweather(jsondata):
                   weatherdata['weather'][0]['main'])
     info = {"chat_id": jsondata['message']['chat']['id'], "text": weatherinfo}
     requests.post("https://api.telegram.org/bot" + 
-     i             os.environ['TELEGRAM_TOKEN'] + "/sendMessage", json=info)
+                   os.environ['TELEGRAM_TOKEN'] + "/sendMessage", json=info)
 
 
 def naver_movie(q, jsondata):
