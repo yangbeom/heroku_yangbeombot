@@ -109,8 +109,8 @@ def token():
     return "Success"
 
 def get_image(chat_id, text):
-    url·=·"https://apis.daum.net/search/image"
-    params·=·{'q': text, 'result': 20, 'pageno': 1, 'sort': 'accu',
+    url = "https://apis.daum.net/search/image"
+    params = {'q': text, 'result': 20, 'pageno': 1, 'sort': 'accu',
                'output':'json', 'apikey': os.environ['DAUM_API']}
     inlineQRP = list()
     r = requests.get(url, params=params)
