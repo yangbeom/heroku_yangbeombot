@@ -26,19 +26,19 @@ def openweather(jsondata):
     r = requests.get(url+os.environ['OPENWEATHERMAP_KEY'])
     weatherdata = json.loads(r.content.decode("utf-8"))
     weatherinfo = "지역 : {} \n온도 : {}˚C\n습도 : {}%\n날씨 : {}".format(
-                  weatherdata['name'], 
+                  weatherdata['name'],
                   weatherdata['main']['temp'],
-                  weatherdata['main']['humidity'], 
+                  weatherdata['main']['humidity'],
                   weatherdata['weather'][0]['main'])
     info = {"chat_id": jsondata['message']['chat']['id'], "text": weatherinfo}
-    requests.post("https://api.telegram.org/bot" + 
+    requests.post("https://api.telegram.org/bot" +
                    os.environ['TELEGRAM_TOKEN'] + "/sendMessage", json=info)
 
 
 def naver_movie(q, jsondata):
     url = "http://auto.movie.naver.com/ac"
-    params = {"q_enc": "UTF-8", "st": "1", "r_lt": "1", "n_ext": "1", 
-              "t_koreng": "1", "r_format": "json", "r_enc": "UTF-8", 
+    params = {"q_enc": "UTF-8", "st": "1", "r_lt": "1", "n_ext": "1",
+              "t_koreng": "1", "r_format": "json", "r_enc": "UTF-8",
               "r_unicode": "0", "r_escape": "1", "q": q}
 
     r = requests.get(url, params=params)
@@ -51,17 +51,17 @@ def naver_movie(q, jsondata):
         f.seek(0)
         info = {"chat_id": jsondata['message']['chat']['id']}
         files = {"photo": f}
-        requests.post("https://api.telegram.org/bot" +  
-                       os.environ['TELEGRAM_TOKEN'] + "/sendPhoto", 
+        requests.post("https://api.telegram.org/bot" +
+                       os.environ['TELEGRAM_TOKEN'] + "/sendPhoto",
                        files=files, data=info, stream=True)
 
 
 def transmission(jsondata):
     print(jsondata)
-    info = {"chat_id": jsondata['message']['chat']['id'], 
-            "text": jsondata['message']['text'].replace('/transmission',''), 
+    info = {"chat_id": jsondata['message']['chat']['id'],
+            "text": jsondata['message']['text'].replace('/transmission',''),
             "parse_mode": "Markdown" }
-    requests.post("https://api.telegram.org/bot"+ 
+    requests.post("https://api.telegram.org/bot"+
                    os.environ['TELEGRAM_TOKEN']+"/sendMessage", json=info)
 
 def testlocation(jsondata):
@@ -72,8 +72,8 @@ def testlocation(jsondata):
                       "one_time_keyboard": True}
     info = {"chat_id": jsondata['message']['chat']['id'],
             "text": "test location", "reply_markup": reply_keyboard}
-    r = requests.post("https://api.telegram.org/bot" + 
-                       os.environ['TELEGRAM_TOKEN'] + "/sendMessage", 
+    r = requests.post("https://api.telegram.org/bot" +
+                       os.environ['TELEGRAM_TOKEN'] + "/sendMessage",
                        json=info)
     print(r.text)
 
@@ -111,3 +111,21 @@ def token():
 @app.route('/')
 def hello():
     return "hello =)"
+
+
+def get_image(chat_id, text):
+    url·=·"https://apis.daum.net/search/image"
+    params·=·{'q': text, 'result': 20, 'pageno': 1, 'sort': 'accu',
+               'output':'json', 'apikey': os.environ['DAUM_API']}
+    inlineQRP = list()
+    r = requests.get(url, params=params)
+    r = r.json()
+
+    for data in r['channel']['item']:
+        inlineQRP.append([{"type": "photo", "id": text,
+                           "photo_url": data['image'],
+                           "thumbnail_url": data['thumbnail']}])
+
+    r = requests.post("https://api.telegram.org/bot" +
+                       os.environ['TELEGRAM_TOKEN'] + "/InlineQueryResultPhoto",
+                       json=info)
