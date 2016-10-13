@@ -79,7 +79,7 @@ def testlocation(jsondata):
 
 
 
-@app.route('/'+os.environ['TELEGRAM_TOKEN']+'/', methods=["POST", "GET"])
+@app.route('/', methods=["POST", "GET"])
 def token():
     if request.method == "POST":
         getjson = request.get_json()
@@ -107,11 +107,6 @@ def token():
             return "what r u doing?"
 
     return "Success"
-
-@app.route('/')
-def hello():
-    return "hello =)"
-
 
 def get_image(chat_id, text):
     url·=·"https://apis.daum.net/search/image"
