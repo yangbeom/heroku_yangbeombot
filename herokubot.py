@@ -21,6 +21,7 @@ def token():
 
 
 def get_image(chat_id, text):
+    print("in get_image")
     url = "https://apis.daum.net/search/image"
     params = {'q': text, 'result': 20, 'pageno': 1, 'sort': 'accu',
               'output':'json', 'apikey': os.environ['DAUM_API']}
@@ -36,5 +37,5 @@ def get_image(chat_id, text):
     inline_answer['results'] = inlineQRP
     r = requests.post("https://api.telegram.org/bot" +
                        os.environ['TELEGRAM_TOKEN'] + "/answerInlineQuery",
-                       json=info)
+                       json=inline_answer)
     print(r.text)
