@@ -32,7 +32,7 @@ def get_image(chat_id, text):
     for data in r['channel']['item']:
         inlineQRP.append({"type": "photo", "id": text,
                            "photo_url": data['image'],
-                           "thumbnail_url": data['thumbnail']})
+                           "thumb_url": data['thumbnail']})
 
     inline_answer['results'] = inlineQRP
     print(inline_answer)
