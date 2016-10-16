@@ -9,25 +9,11 @@ rcommand = r'^\/(?P<command>\w*)'
 rpattern = r'^\/(?P<command>\w*) (?P<q>.*)'
 
 
-def how_to_use(jsondata):
-    howtouse = """사용법
-/poster 영화제목
-영화 포스터를 전송합니다.
-/weather
-서울의 현재온도를 알려줍니다."""
-    info = {"chat_id": jsondata['message']['from']['id'], "text": howtouse}
-    requests.post("https://api.telegram.org/bot" +
-                  os.environ['TELEGRAM_TOKEN'] + "/sendMessage", json=info)
-
-
-
-
-@app.route('/',method=["POST","GET"])
+@app.route('/', methods=["POST", "GET"])
 def token():
-    if request.method == "POST" or "GET":
+    if request.method == "POST":
         getjson = request.get_json()
         print(getjson)
-
     return "Success"
 
 def get_image(chat_id, text):
