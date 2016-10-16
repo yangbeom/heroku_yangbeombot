@@ -26,7 +26,7 @@ def how_to_use(jsondata):
 def token():
     if request.method == "POST" or "GET":
         getjson = request.get_json()
-        print()
+        print(getjson)
 
     return "Success"
 
