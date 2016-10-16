@@ -28,13 +28,13 @@ def get_image(chat_id, text):
     inlineQRP = list()
     r = requests.get(url, params=params)
     r = r.json()
-    inline_answer = {"inline_query_id": chat_id, "results": []}
+    inline_answer = {"inline_query_id": chat_id}
     for data in r['channel']['item']:
         inlineQRP.append([{"type": "photo", "id": text,
                            "photo_url": data['image'],
                            "thumbnail_url": data['thumbnail']}])
 
-    inline_answer['results'].append(inlineQRP)
+    inline_answer['results'] = inlineQRP
     print(inline_answer)
     r = requests.post("https://api.telegram.org/bot" +
                        os.environ['TELEGRAM_TOKEN'] + "/answerInlineQuery",
