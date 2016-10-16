@@ -22,11 +22,10 @@ def how_to_use(jsondata):
 
 
 
-@app.route('/', methods=["POST", "GET"])
+@app.route('/')
 def token():
-    if request.method == "POST" or "GET":
-        getjson = request.get_json()
-        print(getjson)
+    getjson = request.get_json()
+    print(getjson)
 
     return "Success"
 
