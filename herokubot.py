@@ -39,3 +39,4 @@ def get_image(chat_id, text):
     r = requests.post("https://api.telegram.org/bot" +
                        os.environ['TELEGRAM_TOKEN'] + "/answerInlineQuery",
                        json=info)
+    print(r.text)
