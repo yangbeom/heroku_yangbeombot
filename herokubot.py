@@ -14,6 +14,8 @@ def token():
     if request.method == "POST":
         getjson = request.get_json()
         print(getjson)
+        if "inline_query" in getjson.keys():
+            get_image(getjson['id'], getjson['inline_query']['query'])
     elif request.method == "GET":
         getjson = request.get_json()
         print(getjson)
@@ -23,16 +25,17 @@ def token():
 def get_image(chat_id, text):
     url = "https://apis.daum.net/search/image"
     params = {'q': text, 'result': 20, 'pageno': 1, 'sort': 'accu',
-               'output':'json', 'apikey': os.environ['DAUM_API']}
+              'output':'json', 'apikey': os.environ['DAUM_API']}
     inlineQRP = list()
     r = requests.get(url, params=params)
     r = r.json()
-
+    inline_answer = {"inline_query_id": chat_id, "results": None}
     for data in r['channel']['item']:
         inlineQRP.append([{"type": "photo", "id": text,
                            "photo_url": data['image'],
                            "thumbnail_url": data['thumbnail']}])
 
+    inline_answer['results'] = inlineQRP
     r = requests.post("https://api.telegram.org/bot" +
-                       os.environ['TELEGRAM_TOKEN'] + "/InlineQueryResultPhoto",
+                       os.environ['TELEGRAM_TOKEN'] + "/answerInlineQuery",
                        json=info)
