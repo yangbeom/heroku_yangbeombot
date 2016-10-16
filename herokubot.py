@@ -81,30 +81,8 @@ def testlocation(jsondata):
 
 @app.route('/', methods=["POST", "GET"])
 def token():
-    if request.method == "POST":
+    if request.method == "POST" or "GET":
         getjson = request.get_json()
-        print(getjson)
-        try:
-            reresult = re.search(rcommand, getjson['message']['text'])
-            print(reresult.group("command"))
-            if reresult:
-                print(reresult.group("command"))
-                if reresult.group("command") == "poster":
-                    reresult = re.search(rpattern, getjson['message']['text'])
-                    naver_movie(reresult.group('q'), getjson)
-                elif reresult.group("command") == "weather":
-                    openweather(getjson)
-                elif reresult.group("command") == "transmission":
-                    transmission(getjson)
-                elif reresult.group("command") == "location":
-                    testlocation(getjson)
-                else:
-                    how_to_use(getjson)
-            else:
-                how_to_use(getjson)
-                return "notthing your command"
-        except:
-            return "what r u doing?"
 
     return "Success"
 
