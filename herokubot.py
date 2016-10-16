@@ -30,9 +30,9 @@ def get_image(chat_id, text):
     r = r.json()
     inline_answer = {"inline_query_id": chat_id}
     for data in r['channel']['item']:
-        inlineQRP.append({"type": "photo",
-            "id": data['thumbnail'].replace('https://search4.kakaocdn.net/argon/130x130_85_c/',''),
-            "photo_url": data['image'], "thumb_url": data['thumbnail']})
+        inlineQRP.append({"type": "photo", "id": data['title'],
+                "photo_url": data['image'], "thumb_url": data['thumbnail'],
+                "photo_width": data['width'], "photo_height": data['height']})
 
     inline_answer['results'] = inlineQRP
     print(inline_answer)
