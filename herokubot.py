@@ -14,7 +14,11 @@ def token():
     if request.method == "POST":
         getjson = request.get_json()
         print(getjson)
+    elif request.method == "GET":
+        getjson = request.get_json()
+        print(getjson)
     return "Success"
+
 
 def get_image(chat_id, text):
     url = "https://apis.daum.net/search/image"
