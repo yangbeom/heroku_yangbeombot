@@ -24,8 +24,9 @@ def how_to_use(jsondata):
 
 @app.route('/')
 def token():
-    getjson = request.get_json()
-    print(getjson)
+    if request.method == "POST" or "GET":
+        getjson = request.get_json()
+        print()
 
     return "Success"
 
