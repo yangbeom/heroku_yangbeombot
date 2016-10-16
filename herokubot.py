@@ -35,7 +35,7 @@ def get_image(chat_id, text):
                            "thumbnail_url": data['thumbnail']}])
 
     inline_answer['results'].append(inlineQRP)
-    print(inlineQRP)
+    print(inline_answer)
     r = requests.post("https://api.telegram.org/bot" +
                        os.environ['TELEGRAM_TOKEN'] + "/answerInlineQuery",
                        json=inline_answer)
