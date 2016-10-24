@@ -25,6 +25,7 @@ def token():
                        os.environ['TELEGRAM_TOKEN'] + "/sendmessage",
                        json=sendM)
             print(r.text)
+            print(r.status_code)
     return "Success"
 
 
