@@ -17,6 +17,9 @@ def token():
         if "inline_query" in getjson.keys():
             print("get inline")
             get_image(getjson['inline_query']['id'], getjson['inline_query']['query'])
+        elif "message" in getjson.keys():
+            print("get message")
+            print(getjson['message']['id'])
     return "Success"
 
 
