@@ -23,7 +23,7 @@ def token():
             sendM = {"chat_id": getjson['message']['from']['id'], "text": "hi"}
             r = requests.post("https://api.telegram.org/bot" +
                        os.environ['TELEGRAM_TOKEN'] + "/sendmessage",
-                       json=inline_answer)
+                       json=sendM)
             print(r.text)
     return "Success"
 
