@@ -20,6 +20,11 @@ def token():
         elif "message" in getjson.keys():
             print("get message")
             print(getjson['message']['from']['id'])
+            sendM = {"chat_id": getjson['message']['from']['id'], "text": "hi"}
+            r = requests.post("https://api.telegram.org/bot" +
+                       os.environ['TELEGRAM_TOKEN'] + "/sendmessage",
+                       json=inline_answer)
+            print(r.text)
     return "Success"
 
 
